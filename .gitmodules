@@ -42,7 +42,7 @@
 	path = layers/meta-qa
 	url = https://github.com/MontaVista-OpenSourceTechnology/meta-qa.git
 	branch = kirkstone-cgx
-[submodule "layers/meta--montavista-marvell"]
-	path = layers/meta--montavista-marvell
+[submodule "layers/meta-montavista-marvell"]
+	path = layers/meta-montavista-marvell
 	url = https://github.com/MontaVista-OpenSourceTechnology/meta-montavista-marvell
 	branch = kirkstone-cgx
