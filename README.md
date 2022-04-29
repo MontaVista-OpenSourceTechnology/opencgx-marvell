@@ -6,7 +6,7 @@ How to use:
 ==========
 
 ```
-git clone -b kirkstone --recursive https://github.com/MontaVista-OpenSourceTechnology/opencgx-marvell
+git clone -b next --recursive https://github.com/MontaVista-OpenSourceTechnology/opencgx-marvell
 cd opencgx-marvell
 source setup.sh
 ```
