@@ -1,13 +1,13 @@
-# Release repository for x86-generic-64
+# Release repository for marvell-octeontx
 
-Montavista Software, LLC. release of x86-generic-64. 
+Montavista Software, LLC. release of marvell-octeontx. 
 
 How to use:
 ==========
 
 ```
-git clone -b kirkstone --recursive https://github.com/MontaVista-OpenSourceTechnology/opencgx-x86-generic-64
-cd opencgx-x86-generic-64
+git clone -b kirkstone --recursive https://github.com/MontaVista-OpenSourceTechnology/opencgx-marvell
+cd opencgx-marvell
 source setup.sh
 ```
 
@@ -33,7 +33,7 @@ or
 cd <my directory>
 source setup.sh
 bitbake core-image-minimal
-runqemu x86-generic-64 nographic slirp
+runqemu marvell-octeontx nographic slirp
 ```
 
 For additional information see the yocto documentaion: https://www.yoctoproject.org/docs/
@@ -41,11 +41,11 @@ For additional information see the yocto documentaion: https://www.yoctoproject.
 directory layout:
 ================
 ```
-opencgx-x86-generic-64/
-       project - bitbake project for the x86-generic-64 project build
+opencgx-marvell-octeontx/
+       project - bitbake project for the marvell-octeontx project build
        buildtools - build tools to provide minimal build requirement for poky builds
-       layers - layers for building x86-generic-64 project
+       layers - layers for building marvell-octeontx project
        setup.sh - project setup script  
 ```
 
-The default MACHINE is x86-generic-64, however x86-atom-64 and x86-generic are also available. 
+The default MACHINE is marvell-octeontx, however x86-atom-64 and x86-generic are also available. 

@@ -45,14 +45,13 @@ LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-security.git;branc
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-cgl.git;branch=kirkstone-cgx;layer=meta-cgl-common \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-cloud-services.git;branch=kirkstone-cgx \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-montavista-cgl;branch=kirkstone-cgx \
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-montavista-x86-generic;branch=kirkstone-cgx \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-montavista-marvell;branch=kirkstone-cgx \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-qa.git;branch=kirkstone-cgx;layer=meta-qa-framework \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-qa.git;branch=kirkstone-cgx;layer=meta-qa-testsuites \
-MACHINE@x86-generic-64 \
+MACHINE@marvell-octeontx \
 DISTRO@mvista-cgx \
 "
 
-#We use 2.4.4 build tools because of kenrel version limitations
 TOPDIR=$(dirname $THIS_SCRIPT)
 URL=""
 
