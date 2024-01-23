@@ -30,8 +30,8 @@ LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=master;
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/poky.git;branch=master;layer=meta-yocto-bsp \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=master;layer=meta-oe \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=master;layer=meta-python \
-LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=master;layer=meta-filesystems \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=master;layer=meta-networking \
+LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=master;layer=meta-filesystems \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-openembedded.git;branch=master;layer=meta-webserver \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-clang.git;branch=master \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-selinux.git;branch=master \
@@ -88,9 +88,19 @@ export buildtar
 $TOPDIR/bin/fetch-buildtools || $EXIT 1
 
 if [ -z "$TEMPLATECONF" -o ! -d "$TEMPLATECONF" ] ; then
-    export TEMPLATECONF=$TOPDIR/layers/meta-montavista-cgx/conf
+    export TEMPLATECONF=$TOPDIR/layers/meta-montavista-cgx/conf/templates/default
 fi
 
+if which python 2>/dev/null >/dev/null; then 
+    PYTHON=python
+elif which python2 2>/dev/null >/dev/null; then 
+    PYTHON=python2
+elif which python3 2>/dev/null >/dev/null; then 
+    PYTHON=python3
+else
+    echo "Could not find system python, please install"
+    $EXIT 1
+fi
 source $TOPDIR/buildtools/environment-setup-*
 if [ "$?" != "0" ] ; then
    $EXIT 1
@@ -214,14 +224,14 @@ fi
 export -n BB_NO_NETWORK
 if [ "$MAKEDROP" != "1" ] ; then
    # Temporary waiting for proper bitbake integration: https://patchwork.openembedded.org/patch/144806/
-   RELPATH=$(python -c "from os.path import relpath; print (relpath(\"$TOPDIR/layers\",\"$(pwd)\"))")
+   RELPATH=$($PYTHON -c "from os.path import relpath; print (relpath(\"$TOPDIR/layers\",\"$(pwd)\"))")
    sed -i conf/bblayers.conf -e "s,$TOPDIR/layers/,\${TOPDIR}/$RELPATH/,"
    
    if [ "$(readlink -f setup.sh)" = "$(readlink -f $TOPDIR/setup.sh)" ] ; then
       echo "Something went wrong. Exiting to prevent overwritting setup.sh"
       $EXIT 1
    fi
-   SCRIPT_RELPATH=$(python -c "from os.path import relpath; print (relpath(\"$TOPDIR\",\"`pwd`\"))")
+   SCRIPT_RELPATH=$($PYTHON -c "from os.path import relpath; print (relpath(\"$TOPDIR\",\"`pwd`\"))")
    cat > setup.sh << EOF
    if [ -n "\$BASH_SOURCE" ]; then
       THIS_SCRIPT=\$BASH_SOURCE
