@@ -83,8 +83,8 @@ if [ ! -e $TOPDIR/.drop ] ; then
       popd 2>/dev/null >/dev/null
    fi
 fi
-export BUILD_TOOLS_LOCATION
-export buildtar
+export BUILD_TOOLS_LOCATION=https://downloads.yoctoproject.org/releases/yocto/yocto-5.0/buildtools/
+export buildtar=x86_64-buildtools-extended-nativesdk-standalone-5.0.sh
 $TOPDIR/bin/fetch-buildtools || $EXIT 1
 
 if [ -z "$TEMPLATECONF" -o ! -d "$TEMPLATECONF" ] ; then
